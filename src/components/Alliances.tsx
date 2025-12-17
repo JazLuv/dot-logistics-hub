@@ -9,9 +9,7 @@ const Alliances = () => {
           <div className="text-center mb-12">
             <h2 className="mb-6">Alianzas</h2>
             <p className="text-lg text-dot-text leading-relaxed">
-              Colaboramos con empresas líderes como Holiwal Space, agencias
-              aduanales y transportistas reconocidos. Tu negocio respalda su
-              reputación con nuestros socios estratégicos.
+              Colaboramos con empresas líderes como Honeywell Aerospace, Honeywell Optoelectronica, GPA, Makinovo, HT-MX, Suministros Industriales Especializados 3A, Bepensa Motriz, entre otros.
             </p>
           </div>
 
