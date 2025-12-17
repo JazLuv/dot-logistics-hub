@@ -58,9 +58,13 @@ const Footer = () => {
                 aria-label="Facebook"
               >
                 <Facebook className="h-6 w-6 text-primary" />
-              </a>
+                </a>
+              
+              {/* AQUÍ ESTÁ EL CAMBIO PARA INSTAGRAM: */}
               <a
-                href="#"
+                href="https://www.instagram.com/dot.logistics.transport/#" 
+                target="_blank"
+                rel="noopener noreferrer"
                 className="p-3 bg-accent/10 hover:bg-accent/20 rounded-full transition-colors"
                 aria-label="Instagram"
               >

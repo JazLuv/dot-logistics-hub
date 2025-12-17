@@ -49,7 +49,7 @@ const Contact = () => {
           <h2 className="mb-4">Contacto</h2>
           <p className="text-lg text-dot-text max-w-2xl mx-auto">
             ¿Requieres una cotización o más información? Nuestro equipo te
-            responderá en minutos.
+            responderá en minutos por medio de Whatsapp.
           </p>
         </div>
 

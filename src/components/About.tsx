@@ -1,4 +1,4 @@
-import { Target, Eye, Award, Shield, Zap, CheckCircle } from "lucide-react";
+import { Target, Eye, Award, Shield, Zap, CheckCircle, FileCheck } from "lucide-react";
 import { Card } from "@/components/ui/card";
 
 const About = () => {
@@ -15,12 +15,11 @@ const About = () => {
         <div className="max-w-4xl mx-auto text-center mb-16">
           <h2 className="mb-6">Quiénes somos</h2>
           <p className="text-lg text-dot-text leading-relaxed">
-            En Dot Logistics & Transport, nos especializamos en soluciones de
-            logística y transporte que proyectan formalidad, confianza y
-            rapidez. Con base en Chihuahua y cobertura en principales destinos
-            del norte de México, nuestra misión es brindar servicios eficientes
-            y seguros, siempre orientados a satisfacer tus necesidades
-            logísticas.
+          Somos una empresa 100% chihuahuense con presencia en el mercado transportista desde el 2016  respaldad por mas de 15 años de experiencia en el ramo.
+          Contribuimos a la industria maquiladora y a las Pymes de Chihuahua mediante el traslado de materiales de manera eficaz, segura y a tiempo.
+          En DOT Logistics & Transport nos caracteriza el compromiso con el cuidado de las mercancías y la transparencia en cada movimiento. 
+          Contamos con monitoreo satelital 24/7, lo que permite a nuestros clientes conocer la ubicación de su carga en todo momento y tener la tranquilidad de que su envío esta siendo manejado con responsabilidad y profesionalismo.
+          Realizamos movimientos en el estado de Chihuahua ofreciendo soluciones logísticas confiables, puntuales y adaptadas a las necesidades de cada cliente.
           </p>
         </div>
 
@@ -34,8 +33,10 @@ const About = () => {
               <h3 className="text-primary">Misión</h3>
             </div>
             <p className="text-dot-text">
-              Facilitar el transporte y resguardo de mercancías con procesos
-              seguros, transparentes y eficientes.
+            Ofrecer soluciones de transporte seguro, puntual y confiable dentro del estado de Chihuahua,
+            brindando atención personalizada y un servicio profesional que garantice la tranquilidad de nuestros
+            clientes.
+
             </p>
           </Card>
 
@@ -48,28 +49,34 @@ const About = () => {
               <h3 className="text-accent">Visión</h3>
             </div>
             <p className="text-dot-text">
-              Ser el referente en logística integral y transporte para empresas
-              nacionales e internacionales, reconocidos por nuestra
-              confiabilidad y atención personalizada.
+            Ser la empresa de transporte local más confiable de Chihuahua, destacada por su puntualidad,
+            seguridad y excelencia operativa, incorporando tecnología y mejora continua para convertirnos en el
+            aliado logístico preferido de la región.
             </p>
           </Card>
+
         </div>
 
         {/* Valores */}
-        <div className="text-center mb-8">
-          <h3 className="text-dot-dark">Nuestros Valores</h3>
-        </div>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
-          {values.map((value, index) => (
-            <div
-              key={index}
-              className="flex flex-col items-center gap-3 p-6 rounded-2xl bg-card hover:shadow-md transition-all duration-300 hover:-translate-y-1"
-            >
-              <value.icon className={`h-10 w-10 ${value.color}`} />
-              <p className="font-semibold text-dot-dark">{value.title}</p>
+        <Card className="mx-auto max-w-4xl w-full p-8 hover:shadow-lg transition-all duration-300 hover:-translate-y-2 rounded-2xl">
+            
+            {/* Encabezado de la tarjeta */}
+            <div className="flex items-center gap-4 mb-4">
+              <div className="p-3 bg-accent/10 rounded-full">
+                <FileCheck className="h-8 w-8 text-accent" />
+              </div>
+              <h3 className="text-accent">Nuestros Valores</h3>
             </div>
-          ))}
-        </div>
+
+            {/* Texto */}
+            <p className="text-dot-text">
+              Puntualidad – Cumplimos cada entrega a tiempo. Seguridad – Cuidamos cada carga como propia.
+              Confiabilidad – Actuamos con transparencia y responsabilidad. Atención Personalizada – Adaptamos
+              cada servicio a las necesidades del cliente. Profesionalismo – Operación ética, ordenada y de alta
+              calidad. Innovación – Uso de tecnología y mejora constante. Trabajo en Equipo – Coordinación y
+              compromiso en cada servicio.
+            </p>
+          </Card>
       </div>
     </section>
   );

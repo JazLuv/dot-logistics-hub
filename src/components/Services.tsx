@@ -6,15 +6,23 @@ const Services = () => {
     {
       icon: MapPin,
       title: "Traslados locales de mercancía",
-      description:
-        "Soluciones rápidas y seguras de transporte local en Chihuahua y zonas próximas.",
+      description: [
+        "Tornado hasta 500kgs",
+        "Camion 3.5 tons con Caja seca 10 pies",
+        "Camion 3500 con plataforma de 16'",
+      ],
       color: "bg-primary/10 text-primary",
     },
     {
       icon: Truck,
       title: "Traslados foráneos",
-      description:
-        "Conectamos Chihuahua con CD. Juárez, Cuauhtémoc, Delicias, Parral, Torreón y más, adaptándonos a las necesidades de tu empresa.",
+      description: [
+        "Cd. Juarez",
+        "Parral",
+        "Cuauhtemoc",
+        "Delicias",
+        "Torreón"
+      ],
       color: "bg-accent/10 text-accent",
     },
     {
@@ -26,9 +34,9 @@ const Services = () => {
     },
     {
       icon: Globe,
-      title: "Convenios con importadoras / agentes aduanales / transporte de cruce",
+      title: "Logistica de Exportación e Importacion",
       description:
-        "Simplificamos la logística internacional con alianzas estratégicas y procesos ágiles para importación y exportación.",
+        "Convenios con Agentes aduanales, Transportistas certificados y bodegas en Chihuahua, Juarez y El Paso, Tx.",
       color: "bg-accent/10 text-accent",
     },
   ];
@@ -40,7 +48,7 @@ const Services = () => {
           <h2 className="mb-4">Servicios</h2>
           <p className="text-lg text-dot-text max-w-2xl mx-auto">
             Ofrecemos soluciones logísticas integrales adaptadas a las
-            necesidades de tu negocio
+            necesidades de tu negocio:
           </p>
         </div>
 
@@ -54,9 +62,22 @@ const Services = () => {
                 <service.icon className="h-10 w-10" />
               </div>
               <h3 className="mb-4 text-dot-dark">{service.title}</h3>
-              <p className="text-dot-text leading-relaxed">
-                {service.description}
-              </p>
+              
+              {/* AQUÍ ESTÁ LA MAGIA: Condición para lista vs texto */}
+              <div className="text-dot-text leading-relaxed">
+                {Array.isArray(service.description) ? (
+                  // Si es lista (Array), usa <ul>
+                  <ul className="list-disc pl-5 space-y-1">
+                    {service.description.map((item, i) => (
+                      <li key={i}>{item}</li>
+                    ))}
+                  </ul>
+                ) : (
+                  // Si es texto normal, usa <p>
+                  <p>{service.description}</p>
+                )}
+              </div>
+
             </Card>
           ))}
         </div>
