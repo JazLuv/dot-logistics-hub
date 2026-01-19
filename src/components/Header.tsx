@@ -25,46 +25,50 @@ const Header = () => {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 bg-background transition-all duration-300 ${
-        isScrolled ? "shadow-md" : ""
+        isScrolled ? "shadow-sm border-b border-border" : ""
       }`}
     >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
-          {/* Logo */}
+          {/* Logo - Replace with actual logo image */}
           <div className="flex items-center">
-            <div className="text-2xl font-bold">
+            <div className="text-2xl font-extrabold tracking-tight">
               <span className="text-primary">Dot</span>{" "}
-              <span className="text-dot-dark">Logistics & Transport</span>
+              <span className="text-dot-dark">Logistics</span>
             </div>
           </div>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-8">
+          {/* Desktop Navigation - Centered */}
+          <nav className="hidden md:flex items-center gap-10">
             <button
               onClick={() => scrollToSection("about")}
-              className="font-semibold text-dot-text hover:text-primary transition-colors"
+              className="font-semibold text-dot-dark hover:text-primary transition-colors"
             >
               Quiénes somos
             </button>
             <button
               onClick={() => scrollToSection("services")}
-              className="font-semibold text-dot-text hover:text-primary transition-colors"
+              className="font-semibold text-dot-dark hover:text-primary transition-colors"
             >
               Servicios
             </button>
             <button
               onClick={() => scrollToSection("alliances")}
-              className="font-semibold text-dot-text hover:text-primary transition-colors"
+              className="font-semibold text-dot-dark hover:text-primary transition-colors"
             >
               Alianzas
             </button>
+          </nav>
+
+          {/* CTA Button - Right side */}
+          <div className="hidden md:block">
             <Button
               onClick={() => scrollToSection("contact")}
-              className="rounded-full bg-gradient-to-r from-[hsl(var(--primary-gradient-start))] to-[hsl(var(--primary-gradient-end))] hover:scale-105 transition-transform"
+              className="rounded-full bg-primary hover:bg-primary/90 px-6"
             >
               Contacto
             </Button>
-          </nav>
+          </div>
 
           {/* Mobile Menu Button */}
           <button
@@ -72,37 +76,37 @@ const Header = () => {
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
             {isMobileMenuOpen ? (
-              <X className="h-6 w-6 text-primary" />
+              <X className="h-6 w-6 text-dot-dark" />
             ) : (
-              <Menu className="h-6 w-6 text-primary" />
+              <Menu className="h-6 w-6 text-dot-dark" />
             )}
           </button>
         </div>
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <nav className="md:hidden pb-6 flex flex-col gap-4">
+          <nav className="md:hidden pb-6 flex flex-col gap-4 border-t border-border pt-4">
             <button
               onClick={() => scrollToSection("about")}
-              className="font-semibold text-dot-text hover:text-primary transition-colors text-left py-2"
+              className="font-semibold text-dot-dark hover:text-primary transition-colors text-left py-2"
             >
               Quiénes somos
             </button>
             <button
               onClick={() => scrollToSection("services")}
-              className="font-semibold text-dot-text hover:text-primary transition-colors text-left py-2"
+              className="font-semibold text-dot-dark hover:text-primary transition-colors text-left py-2"
             >
               Servicios
             </button>
             <button
               onClick={() => scrollToSection("alliances")}
-              className="font-semibold text-dot-text hover:text-primary transition-colors text-left py-2"
+              className="font-semibold text-dot-dark hover:text-primary transition-colors text-left py-2"
             >
               Alianzas
             </button>
             <Button
               onClick={() => scrollToSection("contact")}
-              className="rounded-full bg-gradient-to-r from-[hsl(var(--primary-gradient-start))] to-[hsl(var(--primary-gradient-end))]"
+              className="rounded-full bg-primary hover:bg-primary/90 w-full mt-2"
             >
               Contacto
             </Button>

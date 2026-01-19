@@ -2,44 +2,47 @@ import { Mail, Phone, MapPin, Facebook, Instagram } from "lucide-react";
 
 const Footer = () => {
   return (
-    <footer className="bg-dot-dark text-white py-12">
+    <footer className="bg-background border-t border-border py-16">
       <div className="container mx-auto px-4">
-        <div className="grid md:grid-cols-3 gap-8 mb-8">
-          {/* Logo y descripción */}
+        <div className="grid md:grid-cols-3 gap-12 mb-12">
+          {/* Logo and Description */}
           <div>
-            <div className="text-2xl font-bold mb-4">
-              <span className="text-primary">Dot</span> Logistics & Transport
+            <div className="text-2xl font-extrabold mb-4 tracking-tight">
+              <span className="text-primary">Dot</span>{" "}
+              <span className="text-dot-dark">Logistics</span>
             </div>
-            <p className="text-gray-300">
+            <p className="text-dot-text leading-relaxed">
               Soluciones de logística y transporte rápidas, seguras y a tiempo.
             </p>
           </div>
 
-          {/* Contacto */}
+          {/* Contact */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Contacto</h3>
-            <div className="space-y-3">
+            <h3 className="text-lg font-semibold mb-6 text-dot-dark">
+              Contacto
+            </h3>
+            <div className="space-y-4">
               <div className="flex items-center gap-3">
-                <Mail className="h-5 w-5 text-primary" />
+                <Mail className="h-5 w-5 text-primary" strokeWidth={1.5} />
                 <a
                   href="mailto:ecarrete@dotlogistics.mx"
-                  className="hover:text-primary transition-colors"
+                  className="text-dot-text hover:text-primary transition-colors"
                 >
                   ecarrete@dotlogistics.mx
                 </a>
               </div>
               <div className="flex items-center gap-3">
-                <Phone className="h-5 w-5 text-accent" />
+                <Phone className="h-5 w-5 text-primary" strokeWidth={1.5} />
                 <a
                   href="tel:6141592833"
-                  className="hover:text-accent transition-colors"
+                  className="text-dot-text hover:text-primary transition-colors"
                 >
                   614 159 2833
                 </a>
               </div>
               <div className="flex items-start gap-3">
-                <MapPin className="h-5 w-5 text-primary flex-shrink-0 mt-1" />
-                <p className="text-gray-300">
+                <MapPin className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" strokeWidth={1.5} />
+                <p className="text-dot-text">
                   Calle García Salinas 5916
                   <br />
                   Col. Las Granjas, Chihuahua
@@ -48,47 +51,47 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Redes Sociales */}
+          {/* Social */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Síguenos</h3>
+            <h3 className="text-lg font-semibold mb-6 text-dot-dark">
+              Síguenos
+            </h3>
             <div className="flex gap-4">
               <a
                 href="#"
-                className="p-3 bg-primary/10 hover:bg-primary/20 rounded-full transition-colors"
+                className="p-3 border border-border hover:border-primary rounded-2xl transition-colors group"
                 aria-label="Facebook"
               >
-                <Facebook className="h-6 w-6 text-primary" />
-                </a>
-              
-              {/* AQUÍ ESTÁ EL CAMBIO PARA INSTAGRAM: */}
+                <Facebook className="h-5 w-5 text-dot-text group-hover:text-primary transition-colors" strokeWidth={1.5} />
+              </a>
               <a
-                href="https://www.instagram.com/dot.logistics.transport/#" 
+                href="https://www.instagram.com/dot.logistics.transport/#"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-3 bg-accent/10 hover:bg-accent/20 rounded-full transition-colors"
+                className="p-3 border border-border hover:border-primary rounded-2xl transition-colors group"
                 aria-label="Instagram"
               >
-                <Instagram className="h-6 w-6 text-accent" />
+                <Instagram className="h-5 w-5 text-dot-text group-hover:text-primary transition-colors" strokeWidth={1.5} />
               </a>
             </div>
           </div>
         </div>
 
-        <div className="border-t border-gray-700 pt-8">
+        <div className="border-t border-border pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-gray-400 text-sm">
+            <p className="text-dot-text text-sm">
               © 2024 Dot Logistics & Transport. Todos los derechos reservados.
             </p>
             <div className="flex gap-6 text-sm">
               <a
                 href="#"
-                className="text-gray-400 hover:text-primary transition-colors"
+                className="text-dot-text hover:text-primary transition-colors"
               >
                 Política de privacidad
               </a>
               <a
                 href="#"
-                className="text-gray-400 hover:text-primary transition-colors"
+                className="text-dot-text hover:text-primary transition-colors"
               >
                 Datos fiscales y legales
               </a>

@@ -1,85 +1,80 @@
-import { Truck, MapPin, Warehouse, Globe } from "lucide-react";
-import { Card } from "@/components/ui/card";
+import warehouseImage from "@/assets/warehouse.jpg";
 
 const Services = () => {
   const services = [
     {
-      icon: MapPin,
+      number: "01",
       title: "Traslados locales de mercancía",
-      description: [
-        "Tornado hasta 500kgs",
-        "Camion 3.5 tons con Caja seca 10 pies",
-        "Camion 3500 con plataforma de 16'",
-      ],
-      color: "bg-primary/10 text-primary",
+      description: "Tornado hasta 500kgs, Camión 3.5 tons con Caja seca 10 pies, Camión 3500 con plataforma de 16'.",
     },
     {
-      icon: Truck,
+      number: "02",
       title: "Traslados foráneos",
-      description: [
-        "Cd. Juarez",
-        "Parral",
-        "Cuauhtemoc",
-        "Delicias",
-        "Torreón"
-      ],
-      color: "bg-accent/10 text-accent",
+      description: "Cd. Juárez, Parral, Cuauhtémoc, Delicias, Torreón y más destinos en el norte de México.",
     },
     {
-      icon: Warehouse,
+      number: "03",
       title: "Resguardo de material en bodega",
-      description:
-        "Protege tu inventario con almacenamiento seguro y flexible en nuestras bodegas, ubicadas en CUU.",
-      color: "bg-primary/10 text-primary",
+      description: "Protege tu inventario con almacenamiento seguro y flexible en nuestras bodegas ubicadas en Chihuahua.",
     },
     {
-      icon: Globe,
-      title: "Logistica de Exportación e Importacion",
-      description:
-        "Convenios con Agentes aduanales, Transportistas certificados y bodegas en Chihuahua, Juarez y El Paso, Tx.",
-      color: "bg-accent/10 text-accent",
+      number: "04",
+      title: "Logística de Exportación e Importación",
+      description: "Convenios con Agentes aduanales, Transportistas certificados y bodegas en Chihuahua, Juárez y El Paso, TX.",
     },
   ];
 
   return (
-    <section id="services" className="py-20 bg-background">
+    <section id="services" className="py-24 lg:py-32 bg-background">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="mb-4">Servicios</h2>
-          <p className="text-lg text-dot-text max-w-2xl mx-auto">
-            Ofrecemos soluciones logísticas integrales adaptadas a las
-            necesidades de tu negocio:
-          </p>
-        </div>
+        <div className="grid lg:grid-cols-2 gap-16 items-start max-w-7xl mx-auto">
+          {/* Left Column: Text Content */}
+          <div>
+            <p className="text-primary font-semibold text-sm uppercase tracking-widest mb-4">
+              Nuestros Servicios
+            </p>
+            <h2 className="mb-6">
+              Soluciones Logísticas<br />
+              <span className="text-primary">Integrales</span>
+            </h2>
+            <p className="text-lg text-dot-text mb-12 leading-relaxed">
+              Ofrecemos soluciones logísticas adaptadas a las necesidades de tu
+              negocio con la más alta calidad y compromiso.
+            </p>
 
-        <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-          {services.map((service, index) => (
-            <Card
-              key={index}
-              className="p-8 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 rounded-2xl"
-            >
-              <div className={`p-4 rounded-2xl w-fit mb-6 ${service.color}`}>
-                <service.icon className="h-10 w-10" />
-              </div>
-              <h3 className="mb-4 text-dot-dark">{service.title}</h3>
-              
-              {/* AQUÍ ESTÁ LA MAGIA: Condición para lista vs texto */}
-              <div className="text-dot-text leading-relaxed">
-                {Array.isArray(service.description) ? (
-                  // Si es lista (Array), usa <ul>
-                  <ul className="list-disc pl-5 space-y-1">
-                    {service.description.map((item, i) => (
-                      <li key={i}>{item}</li>
-                    ))}
-                  </ul>
-                ) : (
-                  // Si es texto normal, usa <p>
-                  <p>{service.description}</p>
-                )}
-              </div>
+            {/* Services List with Numbering */}
+            <div className="space-y-8">
+              {services.map((service) => (
+                <div
+                  key={service.number}
+                  className="flex gap-6 group"
+                >
+                  <span className="text-4xl font-extrabold text-primary/20 group-hover:text-primary transition-colors">
+                    {service.number}
+                  </span>
+                  <div className="border-b border-border pb-6 flex-1">
+                    <h3 className="text-dot-dark mb-2 group-hover:text-primary transition-colors">
+                      {service.title}
+                    </h3>
+                    <p className="text-dot-text leading-relaxed">
+                      {service.description}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
 
-            </Card>
-          ))}
+          {/* Right Column: Vertical Image */}
+          <div className="lg:sticky lg:top-32">
+            <div className="rounded-[40px] overflow-hidden shadow-2xl">
+              <img
+                src={warehouseImage}
+                alt="Servicios de almacenamiento y logística"
+                className="w-full h-auto object-cover aspect-[3/4]"
+              />
+            </div>
+          </div>
         </div>
       </div>
     </section>
