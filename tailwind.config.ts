@@ -51,6 +51,7 @@ export default {
           dark: "hsl(var(--dot-dark))",
           text: "hsl(var(--dot-text))",
           lightBg: "hsl(var(--dot-light-bg))",
+          blob: "hsl(var(--dot-blob))",
         },
       },
       fontFamily: {
@@ -60,6 +61,8 @@ export default {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
+        "3xl": "1.5rem",
+        "4xl": "2.5rem",
       },
       keyframes: {
         "accordion-down": {
