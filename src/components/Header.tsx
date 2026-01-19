@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ArrowUpRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const Header = () => {
@@ -22,6 +22,11 @@ const Header = () => {
     }
   };
 
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    setIsMobileMenuOpen(false);
+  };
+
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 bg-background transition-all duration-300 ${
@@ -30,31 +35,41 @@ const Header = () => {
     >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
-          {/* Logo - Replace with actual logo image */}
-          <div className="flex items-center">
-            <div className="text-2xl font-extrabold tracking-tight">
-              <span className="text-primary">Dot</span>{" "}
-              <span className="text-dot-dark">Logistics</span>
-            </div>
-          </div>
+          {/* Logo */}
+          <button onClick={scrollToTop} className="flex flex-col items-center">
+            <span className="text-3xl font-extrabold tracking-tight">
+              <span className="text-primary">d</span>
+              <span className="text-primary">o</span>
+              <span className="text-primary">t</span>
+            </span>
+            <span className="text-xs font-medium text-dot-dark tracking-wider">
+              Delivery on time
+            </span>
+          </button>
 
           {/* Desktop Navigation - Centered */}
           <nav className="hidden md:flex items-center gap-10">
             <button
-              onClick={() => scrollToSection("about")}
-              className="font-semibold text-dot-dark hover:text-primary transition-colors"
+              onClick={scrollToTop}
+              className="font-semibold text-primary hover:text-primary/80 transition-colors"
             >
-              Quiénes somos
+              Home
+            </button>
+            <button
+              onClick={() => scrollToSection("about")}
+              className="font-semibold text-primary hover:text-primary/80 transition-colors"
+            >
+              ¿Quiénes Somos?
             </button>
             <button
               onClick={() => scrollToSection("services")}
-              className="font-semibold text-dot-dark hover:text-primary transition-colors"
+              className="font-semibold text-primary hover:text-primary/80 transition-colors"
             >
               Servicios
             </button>
             <button
               onClick={() => scrollToSection("alliances")}
-              className="font-semibold text-dot-dark hover:text-primary transition-colors"
+              className="font-semibold text-primary hover:text-primary/80 transition-colors"
             >
               Alianzas
             </button>
@@ -67,6 +82,7 @@ const Header = () => {
               className="rounded-full bg-primary hover:bg-primary/90 px-6"
             >
               Contacto
+              <ArrowUpRight className="ml-1 h-4 w-4" />
             </Button>
           </div>
 
@@ -87,20 +103,26 @@ const Header = () => {
         {isMobileMenuOpen && (
           <nav className="md:hidden pb-6 flex flex-col gap-4 border-t border-border pt-4">
             <button
-              onClick={() => scrollToSection("about")}
-              className="font-semibold text-dot-dark hover:text-primary transition-colors text-left py-2"
+              onClick={scrollToTop}
+              className="font-semibold text-primary hover:text-primary/80 transition-colors text-left py-2"
             >
-              Quiénes somos
+              Home
+            </button>
+            <button
+              onClick={() => scrollToSection("about")}
+              className="font-semibold text-primary hover:text-primary/80 transition-colors text-left py-2"
+            >
+              ¿Quiénes Somos?
             </button>
             <button
               onClick={() => scrollToSection("services")}
-              className="font-semibold text-dot-dark hover:text-primary transition-colors text-left py-2"
+              className="font-semibold text-primary hover:text-primary/80 transition-colors text-left py-2"
             >
               Servicios
             </button>
             <button
               onClick={() => scrollToSection("alliances")}
-              className="font-semibold text-dot-dark hover:text-primary transition-colors text-left py-2"
+              className="font-semibold text-primary hover:text-primary/80 transition-colors text-left py-2"
             >
               Alianzas
             </button>
@@ -109,6 +131,7 @@ const Header = () => {
               className="rounded-full bg-primary hover:bg-primary/90 w-full mt-2"
             >
               Contacto
+              <ArrowUpRight className="ml-1 h-4 w-4" />
             </Button>
           </nav>
         )}
