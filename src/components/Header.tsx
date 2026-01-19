@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Menu, X, ArrowUpRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import logo from "../assets/logo.png";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -37,14 +38,14 @@ const Header = () => {
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <button onClick={scrollToTop} className="flex flex-col items-center">
-            <span className="text-3xl font-extrabold tracking-tight">
-              <span className="text-primary">d</span>
-              <span className="text-primary">o</span>
-              <span className="text-primary">t</span>
-            </span>
-            <span className="text-xs font-medium text-dot-dark tracking-wider">
-              Delivery on time
-            </span>
+            {/* Logo Actualizado */}
+          <div className="flex items-center cursor-pointer" onClick={() => scrollToSection("home")}>
+            <img 
+              src={logo} 
+              alt="Dot Logistics & Transport" 
+              className="h-16 w-auto object-contain" // Ajusta h-12 según necesites el tamaño
+            />
+          </div>
           </button>
 
           {/* Desktop Navigation - Centered */}
