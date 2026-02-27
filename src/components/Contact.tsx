@@ -2,11 +2,14 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Mail, Phone, MapPin, ArrowRight } from "lucide-react";
+import { Mail, Phone, MapPin, ArrowRight, MessageCircle } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+
+const FORMSPREE_ENDPOINT = "https://formspree.io/f/YOUR_FORM_ID"; // Replace with your Formspree form ID
 
 const Contact = () => {
   const { toast } = useToast();
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -14,31 +17,66 @@ const Contact = () => {
     message: "",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-
+  const validateForm = () => {
     if (!formData.name || !formData.email || !formData.message) {
       toast({
         title: "Error",
         description: "Por favor completa todos los campos requeridos.",
         variant: "destructive",
       });
-      return;
+      return false;
     }
+    return true;
+  };
+
+  const handleWhatsApp = (e: React.MouseEvent) => {
+    e.preventDefault();
+    if (!validateForm()) return;
 
     const whatsappMessage = `Hola, mi nombre es ${formData.name}. ${formData.message}. Email: ${formData.email}. Teléfono: ${formData.phone || "No proporcionado"}`;
     const whatsappUrl = `https://wa.me/526141592833?text=${encodeURIComponent(whatsappMessage)}`;
-
     window.open(whatsappUrl, "_blank");
 
     toast({
-      title: "¡Mensaje enviado!",
-      description: "Te contactaremos pronto.",
+      title: "¡Redirigido a WhatsApp!",
+      description: "Completa el envío en WhatsApp.",
     });
-
-    setFormData({ name: "", email: "", phone: "", message: "" });
   };
 
+  const handleEmail = async (e: React.MouseEvent) => {
+    e.preventDefault();
+    if (!validateForm()) return;
+
+    setIsSubmitting(true);
+    try {
+      const response = await fetch(FORMSPREE_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone || "No proporcionado",
+          message: formData.message,
+        }),
+      });
+
+      if (!response.ok) throw new Error("Error al enviar");
+
+      toast({
+        title: "¡Mensaje enviado!",
+        description: "Te contactaremos pronto por correo electrónico.",
+      });
+      setFormData({ name: "", email: "", phone: "", message: "" });
+    } catch {
+      toast({
+        title: "Error",
+        description: "No se pudo enviar el mensaje. Intenta de nuevo.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
   return (
     <section id="contact" className="py-24 lg:py-32 bg-background">
       <div className="container mx-auto px-4">
@@ -104,93 +142,46 @@ const Contact = () => {
 
           {/* Form */}
           <div className="p-8 rounded-[40px] border border-border">
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form onSubmit={(e) => e.preventDefault()} className="space-y-6">
               <div>
-                <label
-                  htmlFor="name"
-                  className="block text-sm font-semibold mb-2 text-dot-dark"
-                >
-                  Nombre *
-                </label>
-                <Input
-                  id="name"
-                  type="text"
-                  value={formData.name}
-                  onChange={(e) =>
-                    setFormData({ ...formData, name: e.target.value })
-                  }
-                  className="rounded-xl border-border focus:border-primary focus:ring-primary"
-                  placeholder="Tu nombre completo"
-                  required
-                />
+                <label htmlFor="name" className="block text-sm font-semibold mb-2 text-dot-dark">Nombre *</label>
+                <Input id="name" type="text" value={formData.name} onChange={(e) => setFormData({ ...formData, name: e.target.value })} className="rounded-xl border-border focus:border-primary focus:ring-primary" placeholder="Tu nombre completo" required />
+              </div>
+              <div>
+                <label htmlFor="email" className="block text-sm font-semibold mb-2 text-dot-dark">Email *</label>
+                <Input id="email" type="email" value={formData.email} onChange={(e) => setFormData({ ...formData, email: e.target.value })} className="rounded-xl border-border focus:border-primary focus:ring-primary" placeholder="tu@email.com" required />
+              </div>
+              <div>
+                <label htmlFor="phone" className="block text-sm font-semibold mb-2 text-dot-dark">Teléfono</label>
+                <Input id="phone" type="tel" value={formData.phone} onChange={(e) => setFormData({ ...formData, phone: e.target.value })} className="rounded-xl border-border focus:border-primary focus:ring-primary" placeholder="614 123 4567" />
+              </div>
+              <div>
+                <label htmlFor="message" className="block text-sm font-semibold mb-2 text-dot-dark">Mensaje *</label>
+                <Textarea id="message" value={formData.message} onChange={(e) => setFormData({ ...formData, message: e.target.value })} className="rounded-xl border-border focus:border-primary focus:ring-primary min-h-32" placeholder="Cuéntanos sobre tus necesidades logísticas..." required />
               </div>
 
-              <div>
-                <label
-                  htmlFor="email"
-                  className="block text-sm font-semibold mb-2 text-dot-dark"
+              <div className="flex flex-col sm:flex-row gap-3">
+                <Button
+                  type="button"
+                  size="lg"
+                  onClick={handleWhatsApp}
+                  className="flex-1 rounded-full bg-[#25D366] hover:bg-[#1da851] text-white text-base py-6"
                 >
-                  Email *
-                </label>
-                <Input
-                  id="email"
-                  type="email"
-                  value={formData.email}
-                  onChange={(e) =>
-                    setFormData({ ...formData, email: e.target.value })
-                  }
-                  className="rounded-xl border-border focus:border-primary focus:ring-primary"
-                  placeholder="tu@email.com"
-                  required
-                />
-              </div>
-
-              <div>
-                <label
-                  htmlFor="phone"
-                  className="block text-sm font-semibold mb-2 text-dot-dark"
+                  <MessageCircle className="mr-2 h-5 w-5" />
+                  WhatsApp
+                </Button>
+                <Button
+                  type="button"
+                  size="lg"
+                  variant="outline"
+                  onClick={handleEmail}
+                  disabled={isSubmitting}
+                  className="flex-1 rounded-full border-primary text-primary hover:bg-primary hover:text-white text-base py-6"
                 >
-                  Teléfono
-                </label>
-                <Input
-                  id="phone"
-                  type="tel"
-                  value={formData.phone}
-                  onChange={(e) =>
-                    setFormData({ ...formData, phone: e.target.value })
-                  }
-                  className="rounded-xl border-border focus:border-primary focus:ring-primary"
-                  placeholder="614 123 4567"
-                />
+                  <Mail className="mr-2 h-5 w-5" />
+                  {isSubmitting ? "Enviando..." : "Enviar por Email"}
+                </Button>
               </div>
-
-              <div>
-                <label
-                  htmlFor="message"
-                  className="block text-sm font-semibold mb-2 text-dot-dark"
-                >
-                  Mensaje *
-                </label>
-                <Textarea
-                  id="message"
-                  value={formData.message}
-                  onChange={(e) =>
-                    setFormData({ ...formData, message: e.target.value })
-                  }
-                  className="rounded-xl border-border focus:border-primary focus:ring-primary min-h-32"
-                  placeholder="Cuéntanos sobre tus necesidades logísticas..."
-                  required
-                />
-              </div>
-
-              <Button
-                type="submit"
-                size="lg"
-                className="w-full rounded-full bg-primary hover:bg-primary/90 text-lg py-6"
-              >
-                Solicita tu cotización
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
             </form>
           </div>
         </div>
