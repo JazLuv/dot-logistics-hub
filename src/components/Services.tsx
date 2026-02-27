@@ -1,4 +1,5 @@
-import warehouseImage from "@/assets/warehouse.jpg";
+import tornadoImage from "@/assets/tornado.jpg";
+import gruaImage from "@/assets/grua.jpg";
 
 const Services = () => {
   const services = [
@@ -65,14 +66,28 @@ const Services = () => {
             </div>
           </div>
 
-          {/* Right Column: Vertical Image */}
+          {/* Right Column: Stacked Images */}
           <div className="lg:sticky lg:top-32">
-            <div className="rounded-[40px] overflow-hidden shadow-2xl">
-              <img
-                src={warehouseImage}
-                alt="Servicios de almacenamiento y logística"
-                className="w-full h-auto object-cover aspect-[3/4]"
-              />
+            <div className="flex flex-col space-y-6">
+              
+              {/* Imagen 1 */}
+              <div className="rounded-[40px] overflow-hidden shadow-2xl">
+                <img
+                  src={tornadoImage}
+                  alt="Servicios de almacenamiento y logística"
+                  className="w-full h-auto object-cover aspect-[16/10]"
+                />
+              </div>
+
+              {/* Imagen 2 */}
+              <div className="rounded-[40px] overflow-hidden shadow-2xl">
+                <img
+                  src={gruaImage} 
+                  alt="Otra descripción del servicio logístico"
+                  className="w-full h-auto object-cover aspect-[16/10]"
+                />
+              </div>
+
             </div>
           </div>
         </div>
